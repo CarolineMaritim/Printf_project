@@ -1,8 +1,8 @@
 #include "main.h"
 /**
-  * _printstring - prints a string to stdout
-  @str - pointer to the string
-  */
+ * _printstring - prints a string to stdout
+ * @str: pointer to the string
+ */
 void _printstring(char *str)
 {
 	int i = 0;
