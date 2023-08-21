@@ -39,11 +39,11 @@ int _printpointer(va_list types, char buffer[],
 		length++;
 	}
 
-	if ((flags & F_ZERO) && !(flags & F_MINUS))
+	if ((flags & FLAG_ZERO) && !(flags & FLAG_MINUS))
 		padd = '0';
-	if (flags & F_PLUS)
+	if (flags & FLAG_PLUS)
 		extra_c = '+', length++;
-	else if (flags & F_SPACE)
+	else if (flags & FLAG_SPACE)
 		extra_c = ' ', length++;
 
 	ind++;
@@ -127,7 +127,7 @@ int _print_nonprintable(va_list types, char buffer[],
 		if (is_printable(str[i]))
 			buffer[i + offset] = str[i];
 		else
-			offset += append_hexa_code(str[i], buffer, i + offset);
+			offset += append_hexa_coder(str[i], buffer, i + offset);
 
 		i++;
 	}

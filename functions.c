@@ -56,7 +56,7 @@ int _printstring(va_list types, char buffer[],
 
 	if (width > length)
 	{
-		if (flags & F_MINUS)
+		if (flags & FLAG_MINUS)
 		{
 			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
@@ -116,7 +116,7 @@ int _printint(va_list types, char buffer[],
 
 	i++;
 
-	return (write_number(is_negative, i, buffer, flags, width, precision, size));
+	return (_writenumber(is_negative, i, buffer, flags, width, precision, size));
 }
 
 /*** _printpercent ***/

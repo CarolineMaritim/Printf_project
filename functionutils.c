@@ -47,7 +47,7 @@ int _gethexacode(char ac, char buffer[], int index)
 
 	buffer[index++] = hexvalues[ac / 16];
 
-	buffer[index] = hexvalue[ac % 16];
+	buffer[index] = hexvalues[ac % 16];
 
 	return (3);
 }

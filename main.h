@@ -1,31 +1,31 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdio.h>
-#include <stdargs.h>
+#include <stdarg.h>
 #include <unistd.h>
 
 #define BUFF_SIZE 1024
-#define UNUSED(x) (void)(X)
+#define UNUSED(x) (void)(x)
 
 /* Sizes */
 #define SIZE_SHORT 1
 #define SIZE_LONG 2
 
 /* Flags */
-#define F_PLUS 2
-#define F_MINUS 1
-#define F_ZERO 4
-#define F_HASH 8
-#define F_SPACE 16
+#define FLAG_PLUS 2
+#define FLAG_MINUS 1
+#define FLAG_ZERO 4
+#define FLAG_HASH 8
+#define FLAG_SPACE 16
 
 /**
-  * struct fmt - struct op
+  * struct format - struct op
   * @fmt: format
   * @fn: function associated
   */
-struct fmt
+struct format
 {
-	char fmt;
+	char format;
 	int (*fn)(va_list, char[], int, int, int, int);
 };
 
@@ -33,10 +33,10 @@ struct fmt
   * typedef struct fmt fmt_t - Struct op
   * @fm_t: associated function
   */
-typedef struct fmt fmt_t;
+typedef struct format format_t;
 
 int _printf(const char *format, ...);
-int _printhandlers(const char *fmt, int *i, va_list,
+int _printhandlers(const char *format, int *i, va_list,
 		char buffer[], int flags, int width, int precision, int size);
 
 /*** Functions ***/
@@ -67,12 +67,12 @@ int _printpercent(va_list types, char buffer[],
 
 /* functions to handle other specifiers */
 int _getflags(const char *format, int *i);
-int _printtwidth(const char *format, int *i, va_list list);
+int _printwidth(const char *format, int *i, va_list list);
 int _printprecision(const char *format, int *i, va_list list);
-int _printtsize(const char *format, int *i);
+int _printsize(const char *format, int *i);
 
 /* function for printing non printable chars */
-int _print_nonprintable((va_list types, char buffer[], int flags,
+int _print_nonprintable(va_list types, char buffer[], int flags,
 			int width, int precision, int size);
 
 /* printing memory address function */
@@ -89,13 +89,13 @@ int _printreverse(va_list types, char buffer[], int flags,
 /* width handler */
 int handle_write_char(char c, char buffer[],
 	int flags, int width, int precision, int size);
-int write_number(int is_positive, int ind, char buffer[],
+int _writenumber(int is_positive, int ind, char buffer[],
 	int flags, int width, int precision, int size);
-int write_num(int ind, char bff[], int flags, int width, int precision,
+int _writenum(int ind, char bff[], int flags, int width, int precision,
 	int length, char padd, char extra_c);
 int _writepointer(char buffer[], int ind, int length, int width,
 		int flags, char padd, char extra_c, int padd_start);
-int write_unsgnd(int is_negative, int ind, char buffer[],
+int _writeunsigned(int is_negative, int ind, char buffer[],
 		int flags, int width, int precision, int size);
 
 /*** Utils ***/

@@ -17,7 +17,7 @@ if (format[current_index] != '.')
 pres = 0;
 for (current_index = 1; format[current_index]; current_index++)
 {
-	if (_isdigit(format[current_index]))
+	if (is_digit(format[current_index]))
 	{
 		pres = pres * 10;
 		pres += format[current_index] - '0';

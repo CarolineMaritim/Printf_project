@@ -17,7 +17,7 @@ int _printunsigned(va_list types, char buffer[],
 	int i = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 
-	num = convert_size_unsgnd(num, size);
+	num = convert_size_unsigned(num, size);
 
 	if (num == 0)
 		buffer[i--] = '0';
@@ -32,7 +32,7 @@ int _printunsigned(va_list types, char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
+	return (_writeunsigned(0, i, buffer, flags, width, precision, size));
 }
 
 /*** _printoctal ***/
@@ -56,7 +56,7 @@ int _printoctal(va_list types, char buffer[],
 
 	UNUSED(width);
 
-	num = convert_size_unsgnd(num, size);
+	num = convert_size_unsigned(num, size);
 
 	if (num == 0)
 		buffer[i--] = '0';
@@ -69,12 +69,12 @@ int _printoctal(va_list types, char buffer[],
 		num /= 8;
 	}
 
-	if (flags & F_HASH && init_num != 0)
+	if (flags & FLAG_HASH && init_num != 0)
 		buffer[i--] = '0';
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
+	return (_writeunsigned(0, i, buffer, flags, width, precision, size));
 }
 
 /*** _printhexadecimal ***/
@@ -136,7 +136,7 @@ int _printhexa(va_list types, char map_to[], char buffer[],
 
 	UNUSED(width);
 
-	num = convert_size_unsgnd(num, size);
+	num = convert_size_unsigned(num, size);
 
 	if (num == 0)
 		buffer[i--] = '0';
@@ -149,7 +149,7 @@ int _printhexa(va_list types, char map_to[], char buffer[],
 		num /= 16;
 	}
 
-	if (flags & F_HASH && init_num != 0)
+	if (flags & FLAG_HASH && init_num != 0)
 	{
 		buffer[i--] = flag_ch;
 		buffer[i--] = '0';
@@ -157,5 +157,5 @@ int _printhexa(va_list types, char map_to[], char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
+	return (_writeunsigned(0, i, buffer, flags, width, precision, size));
 }

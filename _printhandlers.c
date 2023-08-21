@@ -23,8 +23,8 @@ format_t format_array[] = {
 	{'c', _printchar}, {'s', _printstring}, {'i', _printint},
 	{'d', _printint}, {'%', _printpercent}, {'u', _printunsigned},
 	{'b', _printbinary}, {'x', _printhexadecimal}, {'o', _printoctal},
-	{'p', _printpointer}, {'X', _printupperhex}, {'r', _printreverse},
-	{'S', _printnoneprint}, {'\0', NULL}, {'R', _printrot13}
+	{'p', _printpointer}, {'X', _printhexaupper}, {'r', _printreverse},
+	{'S', _print_nonprintable}, {'\0', NULL}, {'R', _printrot13string}
 };
 for (index = 0; format_array[index] != '\0'; index++)
 {

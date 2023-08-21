@@ -11,12 +11,12 @@
 int _getflags(const char *format, int *num)
 {
 const char ch_flags[] = {'-', '+', '0', '#', ' ', '\0'};
-const int arrayflags[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
+const int arrayflags[] = {FLAG_MINUS, FLAG_PLUS, FLAG_ZERO, FLAG_HASH, FLAG_SPACE, 0};
 int j;
 int current_index;
 int flags = 0;
 /*loop through the format current index*/
-for (current_index = *num + 1; format[curent_index]; current_index++)
+for (current_index = *num + 1; format[current_index]; current_index++)
 {
 /*inner for loop to check the flag array*/
 for (j = 0; ch_flags[j]; current_index++)
