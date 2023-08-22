@@ -1,86 +1,75 @@
 #include "main.h"
+unsigned int _printwidth(buffer_t *output, unsigned int printed,
+unsigned char flags, int wid);
+unsigned int _printstrnwidth(buffer_t *output,
+unsigned char flags, int wid, int prec, int size);
+unsigned int _printnegwidth(buffer_t *output, unsigned int printed,
+unsigned char flags, int wid);
 /**
- * _isprintable - Checks if character is printable
- * @c: character being checked
+ * _printwidth - Stores leading spaces to a buffer for a width modifier.
+ * @output: A buffer_t struct containing a character array.
+ * @printed: The current number of characters already printed to output
+ *           for a given number specifier.
+ * @flags: Flag modifiers.
+ * @wid: A width modifier.
  *
- * Return: 1 if true, else 0
+ * Return: The number of bytes stored to the buffer.
  */
-int _isprintable(char c)
+unsigned int _printwidth(buffer_t *output, unsigned int printed,
+unsigned char flags, int wid)
 {
-	if (c >= 32 && c < 127)
-		/*loops to check the printable chars*/
-		return (1);
-	else
-		return (0);
+unsigned int ret = 0;
+char width = ' ';
+if (NEG_FLAG == 0)
+{
+for (wid -= printed; wid > 0;)
+ret += _memorycopy(output, &width, 1);
+}
+return (ret);
 }
 /**
- * _isdigit - Checks if character is a digit
- * @c: Character to be checked
+ * _printstrnwidth - Stores leading spaces to a buffer for a width modifier.
+ * @output: A buffer_t struct containing a character array.
+ * @flags: Flag modifiers.
+ * @wid: A width modifier.
+ * @prec: A precision modifier.
+ * @size: The size of the string.
  *
- * Return: 1 if true. else 0
+ * Return: The number of bytes stored to the buffer.
  */
-int _isdigit(char c)
+unsigned int _printstrnwidth(buffer_t *output,
+		unsigned char flags, int wid, int prec, int size)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
+unsigned int ret = 0;
+char width = ' ';
+if (NEG_FLAG == 0)
+{
+wid -= (prec == -1) ? size : prec;
+for (; wid > 0; wid--)
+ret += _memorycopy(output, &width, 1);
+}
+return (ret);
 }
 /**
- * _gethexacode - Gets hexa code from ascii
- * @buffer: Array of characters
- * @index: Index
- * @ac: ASCII CODE
+ * _printnegwidth - Stores trailing spaces to a buffer for a '-' flag.
+ * @output: A buffer_t struct containing a character array.
+ * @printed: The current number of bytes already stored to output
+ *           for a given specifier.
+ * @flags: Flag modifiers.
+ * @wid: A width modifier.
  *
- * Return: 3 always
+ * Return: The number of bytes stored to the buffer.
  */
-int _gethexacode(char ac, char buffer[], int index)
+unsigned int _printnegwidth(buffer_t *output, unsigned int printed,
+		unsigned char flags, int wid)
 {
-	char hexvalues[] = "0123456789ABCDEF";
-	if (ac < 0)
-
-	ac = ac * -1;
-
-	buffer[index++] = '\\';
-
-	buffer[index++] = 'x';
-
-	buffer[index++] = hexvalues[ac / 16];
-
-	buffer[index] = hexvalues[ac % 16];
-
-	return (3);
+unsigned int ret = 0;
+char width = ' ';
+if (NEG_FLAG == 1)
+{
+for (wid -= printed; wid > 0; wid--)
+ret += _memorycopy(output, &width, 1);
 }
-/**
- * _convertunsignednum - Converts num to a particular size
- * @n: Number checked
- * @size: Size of the number
- *
- * Return: The result number
- */
-long int _convertunsignednum(unsigned long int n, int size)
-{
-	if (size == SIZE_LONG)
-		return (n);
-	else if (size == SIZE_SHORT)
-		return ((unsigned int)n);
-	else
-		return ((unsigned int)n);
-}
-/**
- * _convertnumsize - Sets number to specific size
- * @n: Number being checked
- * @size: Size of the Number checked
- *
- * Return: Number n
- */
-long int _convertnumsize(long int n, int size)
-{
-	if (size == SIZE_LONG)
-		return (n);
-	else if (size == SIZE_SHORT)
-		return ((short)n);
-	else
-		return ((int)n);
+return (ret);
 }
 
