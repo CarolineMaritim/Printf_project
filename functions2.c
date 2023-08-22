@@ -124,10 +124,10 @@ int _print_nonprintable(va_list types, char buffer[],
 
 	while (str[i] != '\0')
 	{
-		if (is_printable(str[i]))
+		if (_isprintable(str[i]))
 			buffer[i + offset] = str[i];
 		else
-			offset += append_hexa_coder(str[i], buffer, i + offset);
+			offset += _gethexacode(str[i], buffer, i + offset);
 
 		i++;
 	}

@@ -67,9 +67,9 @@ int _printpercent(va_list types, char buffer[],
 
 /* functions to handle other specifiers */
 int _getflags(const char *format, int *i);
-int _printwidth(const char *format, int *i, va_list list);
-int _printprecision(const char *format, int *i, va_list list);
-int _printsize(const char *format, int *i);
+int _printwidth(const char *format, int *num, va_list args);
+int _printprecision(const char *format, int *num, va_list args);
+int _printsize(const char *format, int *num);
 
 /* function for printing non printable chars */
 int _print_nonprintable(va_list types, char buffer[], int flags,
@@ -87,22 +87,22 @@ int _printreverse(va_list types, char buffer[], int flags,
 	int width, int precision, int size);
 
 /* width handler */
-int handle_write_char(char c, char buffer[],
-	int flags, int width, int precision, int size);
-int _writenumber(int is_positive, int ind, char buffer[],
-	int flags, int width, int precision, int size);
-int _writenum(int ind, char bff[], int flags, int width, int precision,
-	int length, char padd, char extra_c);
-int _writepointer(char buffer[], int ind, int length, int width,
-		int flags, char padd, char extra_c, int padd_start);
-int _writeunsigned(int is_negative, int ind, char buffer[],
-		int flags, int width, int precision, int size);
+int _writechar(char c, char b[], int f, int w,
+                int p, int s);
+int _writenumber(int negative_int, int num, char b[],
+	int f, int w, int p, int s);
+int _writenum(int num, char b[], int f, int w, int p,
+	int len, char pad, char ch);
+int _writepointer(char b[], int num, int len, int w,
+		int f, char pad, char ch, int pad_start);
+int _writeunsigned(int negative_num, int num, char b[],
+		int f, int w, int p, int s);
 
 /*** Utils ***/
-int is_printable(char);
-int is_digit(char);
-int append_hexa_coder(char, char[], int);
-long int convert_size_number(long int num, int size);
-long int convert_size_unsigned(unsigned long int num, int size);
+int _isprintable(char c);
+int _isdigit(char c);
+int _gethexacode(char ac, char buffer[], int index);
+long int _convertnumsize(long int n, int size);
+long int _convertunsignednum(unsigned long int num, int size);
 
 #endif

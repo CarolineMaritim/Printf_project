@@ -26,7 +26,7 @@ format_t format_array[] = {
 	{'p', _printpointer}, {'X', _printhexaupper}, {'r', _printreverse},
 	{'S', _print_nonprintable}, {'\0', NULL}, {'R', _printrot13string}
 };
-for (index = 0; format_array[index] != '\0'; index++)
+for (index = 0; format_array[index].format != '\0'; index++)
 {
 	/*inner loop to find match*/
 	if (format[*num] == format_array[index].format)

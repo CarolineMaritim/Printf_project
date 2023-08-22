@@ -65,8 +65,8 @@ int _writenumber(int negative_int, int num, char b[], int f,
 		ch = '+';
 	else if (f & FLAG_SPACE)
 		ch = ' ';
-	else
-		return (_writenum(num, b, f, w, p, len, pad, ch));
+
+return (_writenum(num, b, f, w, p, len, pad, ch));
 }
 /**
  * _writenum - Writes number to the stdout
@@ -143,11 +143,17 @@ int _writenum(int num, char b[], int f, int w, int p, int len,
 
 int _writeunsigned(int negative_num, int num, char b[], int f, int w, int p, int s)
 {
+	int len;
+	int index;
+      	char pad;
+
 	UNUSED(negative_num);
-	UNUSED(s);
-	int len = BUFF_SIZE - num -1;
-	int index = 0;
-	char pad = ' ';
+        UNUSED(s);
+
+	len = BUFF_SIZE - num -1;
+	index = 0;
+	pad = ' ';
+
 	if (p == 0 && num == BUFF_SIZE - 2 && b[num] == '0')
 	return (0);
 	if (p > 0 && p < len)
@@ -220,7 +226,7 @@ int _writepointer(char b[], int num, int len, int w, int f,
 		b[1] = '0';
 		b[2] = 'x';
 		return (write(1, &b[pad_start], index - pad_start) + 
-				write(1, &b[num], len(1 - pad_start) - 2));
+				write(1, &b[num], len - (1 - pad_start) - 2));
 		}
 	}
 	b[--num] = 'x';
