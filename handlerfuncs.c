@@ -150,7 +150,7 @@ unsigned char, int, int, unsigned char)
 int i;
 converter_t converters[] = {
 {'c', _convertchar},
-{'s',_converttostring},
+{'s', int_converttostring},
 {'d', _converttosignedint},
 {'i', _converttosignedint},
 {'%', _convertpercent},
@@ -159,10 +159,10 @@ converter_t converters[] = {
 {'o', _converttooctal},
 {'x', _convertunsignedtohex},
 {'X', _convertunsignedtoupperhex},
-{'S',_converttostrn},
+{'S', int_converttostrn},
 {'p', _convertpointertohex},
 {'r', _converttorev},
-{'R',_converttoRot13},
+{'R', int_converttoRot13},
 {0, NULL}
 };
 for (i = 0; converters[i].func; i++)

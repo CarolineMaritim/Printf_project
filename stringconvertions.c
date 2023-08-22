@@ -79,7 +79,7 @@ if (*(str + index) < 32 || *(str + index) >= 127)
 ret += _memorycopy(output, hex, 2);
 if (*(str + index) < 16)
 ret += _memorycopy(output, &zero, 1);
-ret += convert_ubase(output, *(str + index),
+ret += _convertunsignedbase(output, *(str + index),
 "0123456789ABCDEF", flags, 0, 0);
 continue;
 }
@@ -166,7 +166,7 @@ break;
 if (j == 52)
 ret += _memorycopy(output, (str + i), 1);
 }
-ret += _printstrnwidth(output, ret, flags, wid);
+ret += _printstrnwidth(output, flags, wid, prec, size);
 return (ret);
 }
 
